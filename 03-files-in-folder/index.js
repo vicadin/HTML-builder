@@ -10,11 +10,13 @@ fs.readdir(path.join(__dirname, 'secret-folder'), (err, files) => {
     fs.stat(pathFile, (err, stats) => {
       if (err) throw err;
 
-      console.log(
-        `${path.parse(file).name} - ${path.parse(file).ext.slice(1)} - ${
-          stats.size
-        } байт`,
-      );
+      if (stats.isFile()) {
+        console.log(
+          `${path.parse(file).name} - ${path.parse(file).ext.slice(1)} - ${
+            stats.size
+          } байт`,
+        );
+      }
     });
   });
 });
